@@ -120,20 +120,6 @@ test("pluck()", function() {
   same([{foo:1}, {bar:2}].pluck("baz"), [undefined, undefined]);
 });
 
-test("pluckField()", function() {
-  function record(obj) {
-    return {
-      get: function(x){return obj[x];}
-    };
-  }
-  
-  var people = [record({name:"John", age:20}), record({name:"Mary", age:14})];
-  same(people.pluckField("name"), ["John", "Mary"]);
-  same(people.pluckField("age"), [20, 14]);
-  same([].pluckField("foo"), [], "plucking empty array results in empty array");
-  same([record({foo:1}), record({bar:2})].pluckField("baz"), [undefined, undefined]);
-});
-
 test("indexOf() returns array index or -1", function() {
   same([1,2,3,4].indexOf(3), 2);
   same([5,5,8,2,3,2].indexOf(2), 3);
