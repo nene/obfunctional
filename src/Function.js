@@ -10,7 +10,7 @@ obfunctional.override(Function, {
    * </pre>
    * 
    * @param {Object} object  value for this inside function.
-   * @param {Object} var1 additional arguments to pess to the function
+   * @param {Object} var1 additional arguments to pass to the function
    * @return {Function}
    */
   bind: function(object) {
