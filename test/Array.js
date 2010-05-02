@@ -1,35 +1,5 @@
 module("Array");
 
-test("max()", function() {
-  same([].max(), null, "maximum value in empty list is null");
-  same([9].max(), 9, "maximum value of one-element list is the only value in there");
-  same([3,4,1].max(), 4);
-  same([2,2,2,2].max(), 2);
-  
-  var d1 = new Date(1000);
-  var d2 = new Date(2000);
-  var d3 = new Date(3000);
-  same([d1,d2,d3].max(), d3, "also works on Date's");
-});
-
-test("min()", function() {
-  same([].min(), null, "minimum value in empty list is null");
-  same([9].min(), 9, "minimum value of one-element list is the only value in there");
-  same([3,4,1].min(), 1);
-  same([2,2,2,2].min(), 2);
-  
-  var d1 = new Date(1000);
-  var d2 = new Date(2000);
-  var d3 = new Date(3000);
-  same([d1,d2,d3].min(), d1, "also works on Date's");
-});
-
-test("sum()", function() {
-  same([].sum(), 0, "sum of empty list is 0");
-  same([42].sum(), 42);
-  same([1,2,3].sum(), 6);
-});
-
 test("pluck()", function() {
   var people = [{name:"John", age:20}, {name:"Mary", age:14}];
   same(people.pluck("name"), ["John", "Mary"]);

@@ -330,13 +330,15 @@ obfunctional.override(Array, {
   /**
    * Returns largest value in array.
    * 
-   * <p>For example:
+   * >> [4,3,8,2,7].max() -> 8
    * 
-   * <pre>
-   * [4,3,8,2,7].max(); // returns 8
-   * </pre>
+   * When array is empty, returns null:
    * 
-   * When array is empty, returns null.
+   * >> [].max() -> null
+   * 
+   * Also works with dates:
+   * 
+   * >> [new Date(1000), new Date(2000), new Date(3000)].max() -> new Date(3000)
    * 
    * @return {Number/Date}
    */
@@ -347,13 +349,15 @@ obfunctional.override(Array, {
   /**
    * Returns smallest value in array.
    * 
-   * <p>For example:
+   * >> [4,3,8,2,7].min() -> 2
    * 
-   * <pre>
-   * [4,3,8,2,7].min(); // returns 2
-   * </pre>
+   * When array is empty, returns null:
    * 
-   * When array is empty, returns null.
+   * >> [].min() -> null
+   * 
+   * Also works with dates:
+   * 
+   * >> [new Date(1000), new Date(2000), new Date(3000)].min() -> new Date(1000)
    * 
    * @return {Number/Date}
    */
@@ -364,13 +368,16 @@ obfunctional.override(Array, {
   /**
    * Adds together all values in array.
    * 
-   * <p>For example:
+   * >> [1,2,3].sum() -> 6
+   * >> [7,3,-10].sum() -> 0
    * 
-   * <pre>
-   * [1,2,3].sum(); // returns 6
-   * </pre>
+   * When array is empty, returns 0:
    * 
-   * When array is empty, returns 0.  Works only with numeric arrays.
+   * >> [].sum() -> 0
+   * 
+   * Works only with numeric arrays:
+   * 
+   * >> ["hello", "dolly"].sum() -> NaN
    * 
    * @return {Number}
    */
