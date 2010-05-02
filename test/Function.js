@@ -1,46 +1,5 @@
 module("Function");
 
-test("bind()", function() {
-  var func = function(x, y) {
-    return this.foo + x + y;
-  };
-  same(func.bind({foo: "a"})("b", "c"), "abc");
-  same(func.bind({foo: "a"}, "b")("c"), "abc");
-  same(func.bind({foo: "a"}, "b", "c")(), "abc");
-});
-
-test("not() even/odd", function() {
-  var even = function(x){return x % 2 === 0;};
-  var odd = even.not();
-  ok(even(4));
-  ok(!even(3));
-  ok(odd(7));
-  ok(!odd(8));
-});
-
-test("not() eq/neq", function() {
-  var eq = function(a,b){return a === b;};
-  var neq = eq.not();
-  ok(eq(2,2));
-  ok(!eq(1,2));
-  ok(neq(1,2));
-  ok(!neq(2,2));
-});
-
-test("not() in object context", function() {
-  var obj = {
-    x: 6,
-    isX: function(n) {
-      return n === this.x;
-    }
-  };
-  obj.notX = obj.isX.not();
-  ok(!obj.isX(1));
-  ok(obj.isX(6));
-  ok(!obj.notX(6));
-  ok(obj.notX(8));
-});
-
 test("cacheMethod() no arguments", function() {
   var obj = {
     value: 1,

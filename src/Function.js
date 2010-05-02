@@ -9,6 +9,10 @@ obfunctional.override(Function, {
    * f.bind(obj, args...)(args2...) == f.apply(obj, [args..., args2...])
    * </pre>
    * 
+   * >> "this.foo + x + y".lambda().bind({foo: "a"})("b", "c") -> "abc"
+   * >> "this.foo + x + y".lambda().bind({foo: "a"}, "b")("c") -> "abc"
+   * >> "this.foo + x + y".lambda().bind({foo: "a"}, "b", "c")() -> "abc"
+   * 
    * @param {Object} object  value for this inside function.
    * @param {Object} var1 additional arguments to pass to the function
    * @return {Function}
@@ -24,14 +28,15 @@ obfunctional.override(Function, {
   /**
    * Negates a predicate function.
    * 
-   * <p>For example when we have a predicate that returns true
+   * For example when we have a predicate that returns true
    * when number is even, we can use not() to get a function
    * that returns true when number is odd:
    * 
-   * <pre>
-   * var even = function(x) { return x % 2 === 0; };
-   * var odd = even.not();
-   * </pre>
+   * >> "x % 2 === 0".lambda().not()(5) -> true
+   * 
+   * It also works in object context:
+   * 
+   * >> "this.x > y".lambda().call({x: 5}, 4) -> true
    * 
    * @return {Function} negated function
    */
