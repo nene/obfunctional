@@ -453,11 +453,9 @@ obfunctional.override(Array, {
   /**
    * Removes null and undefined array elements.
    * 
-   * For example:
-   * 
-   * <pre>
-   * [1,2,null,3,undefined,4].compact() --> [1,2,3,4]
-   * </pre>
+   * >> [1,2,null,"x",undefined,false].compact() -> [1,2,"x",false]
+   * >> [1,2,3].compact() -> [1,2,3]
+   * >> [undefined,null,null].compact() -> []
    * 
    * @return {Array}
    */
@@ -468,11 +466,10 @@ obfunctional.override(Array, {
   /**
    * Flattens multi-dimensional array into one-dimensional.
    * 
-   * <p>For example:
-   * 
-   * <pre>
-   * [1,2,[3,4,[5,6]],7].flatten() --> [1,2,3,4,5,6,7]
-   * </pre>
+   * >> [].flatten() -> []
+   * >> [1,2,3].flatten() -> [1,2,3]
+   * >> [[1,2],3].flatten() -> [1,2,3]
+   * >> [[1,[2]],[3]].flatten() -> [1,2,3]
    * 
    * @return {Array}
    */

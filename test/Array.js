@@ -1,25 +1,5 @@
 module("Array");
 
-test("compact() removes nothing when no element null or undefined", function() {
-  var arr = [42,true,false,{x:8},[1,2]];
-  same(arr.compact(), arr);
-});
-
-test("compact() removes null and undefined", function() {
-  same([undefined,null,1,null,2,undefined,3,null,null].compact(), [1,2,3]);
-});
-
-test("compact() returns empty array when all elements null/undefined", function() {
-  same([undefined,null,null,undefined,null,null].compact(), []);
-});
-
-test("flatten()", function() {
-  same([].flatten(), []);
-  same([1,2,3].flatten(), [1,2,3]);
-  same([[1,2],3].flatten(), [1,2,3]);
-  same([[1,[2]],[3]].flatten(), [1,2,3]);
-});
-
 test("first()", function() {
   same([].first(), undefined);
   same([8].first(), 8);
