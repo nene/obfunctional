@@ -268,7 +268,7 @@ obfunctional.override(Array, {
   /**
    * Invokes a method on each item in an Array.
    * 
-   * Invoke is just a special form of map:
+   * Invoke is just a special case of map:
    * 
    * >> [{foo:"1".lambda()}, {foo:"2".lambda()}].invoke("foo") -> [1,2]
    * >> [{foo:"1".lambda()}, {foo:"2".lambda()}].map(".foo()") -> [1,2]
@@ -388,15 +388,10 @@ obfunctional.override(Array, {
   /**
    * Extracts property values from each object in array.
    * 
-   * <p>For example:
+   * Pluck is just a special case of map():
    * 
-   * <pre>
-   * var people = [{name:"John", age:20}, {name:"Mary", age:14}];
-   * people.pluck("name"); // returns ["John", "Mary"]
-   * people.pluck("age"); // returns [20, 14]
-   * </pre>
-   * 
-   * Inspired by Prototype JS method Enumerable.pluck()
+   * >> [{a: 1}, {a: 3}].pluck("a") -> [1, 3]
+   * >> [{a: 1}, {a: 3}].map(".a") -> [1, 3]
    * 
    * @param {String} key  the name of object property to retrieve
    * @return {Array}

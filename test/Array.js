@@ -1,13 +1,5 @@
 module("Array");
 
-test("pluck()", function() {
-  var people = [{name:"John", age:20}, {name:"Mary", age:14}];
-  same(people.pluck("name"), ["John", "Mary"]);
-  same(people.pluck("age"), [20, 14]);
-  same([].pluck("foo"), [], "plucking empty array results in empty array");
-  same([{foo:1}, {bar:2}].pluck("baz"), [undefined, undefined]);
-});
-
 test("contains() finds nothing from empty list", function() {
   same([].contains(5), false);
 });
