@@ -1,48 +1,5 @@
 module("Array");
 
-test("map()", function() {
-  same([].map(function(){}), [], "mapping empty list always returns empty list");
-  same([1,2,3].map('*2'), [2,4,6], "doubling all alements");
-  same([5,8,2].map('v,i->i'), [0,1,2], "second argument is array index");
-});
-
-test("map() gets function scope from second argument", function() {
-  var obj = {
-    value: 5,
-    addValue: function(x){return x+this.value;}
-  };
-  
-  same([1,2,3,4].map(obj.addValue, obj), [6,7,8,9]);
-});
-
-test("reduce()", function() {
-  same([].reduce('1+2+3', 0), 0, "reducing empty list always returns initial value");
-  same([1,2,3].reduce('+', 0), 6, "Implementation of sum()");
-  same([1,2,3].reduce('*', 1), 6, "Implementation of product()");
-  same([1,2,3].reduce('x,y->x.concat(y)', []), [1,2,3], "Implementation of clone()");
-});
-
-test("filter()", function() {
-  same([].filter('1+2+3'), [], "filtering empty list results in empty list");
-  same([1,2,3].filter('>1'), [2,3]);
-  same([1,2,3].filter('<1'), []);
-  same([1,2,3].filter('v,i -> i>1'), [3], "second argument is array index");
-});
-
-test("every()", function() {
-  same([].every(function(){}), true, "every element in empty list satisfies predicate");
-  same([1,2,3].every('>0'), true, "1,2,3 are all greater than 0");
-  same([1,2,3].every('>1'), false, "1,2,3 aren't all greater than 1");
-});
-
-test("some()", function() {
-  same([].some(function(){}), false, "no element in empty list satisfies predicate");
-  same([1,2,3].some('>0'), true, "1,2,3 are all greater than 0");
-  same([1,2,3].some('>1'), true, "some of 1,2,3 are greater than 1");
-  same([1,2,3].some('>2'), true, "some of 1,2,3 are greater than 2");
-  same([1,2,3].some('>3'), false, "none of 1,2,3 is greater than 3");
-});
-
 test("invoke()", function() {
   same([].invoke("foo"), [], "invoke on empty list results in empty list");
   

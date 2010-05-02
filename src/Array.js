@@ -46,6 +46,14 @@ Array.prototype.forEach = (function(){
  * <p>Implementation of JavaScript 1.6 built in method, as documented in:
  * https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
  * 
+ * >> [].map(function(){}) -> []
+ * >> [1,2,3].map('*2') -> [2,4,6]
+ * >> [5,8,2].map('v,i->i') -> [0,1,2]
+ * 
+ * Second argument specifies function scope:
+ * 
+ * >> [1,2,3,4].map("x -> x+this.value", {value: 5}) -> [6,7,8,9]
+ * 
  * @param {Function} func
  * @param {Object} scope
  * @return {Array}
@@ -78,6 +86,14 @@ Array.prototype.map = (function(){
  * <p>Implementation of JavaScript 1.8 built in method, as documented in:
  * https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduce
  * 
+ * >> [].reduce('1+2+3', 0) -> 0
+ * 
+ * reduce() can be used to implement sum(), product() and clone() functions:
+ * 
+ * >> [1,2,3].reduce('+', 0) -> 6
+ * >> [1,2,3].reduce('*', 1) -> 6
+ * >> [1,2,3].reduce('x,y->x.concat(y)', []) -> [1,2,3]
+ * 
  * @param {Function} func
  * @param {Anything} initial
  * @return {Array}
@@ -108,6 +124,11 @@ Array.prototype.reduce = (function(){
  * <p>Implementation of JavaScript 1.6 built in method, as documented in:
  * https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/filter
  * 
+ * >> [].filter('1+2+3') -> []
+ * >> [1,2,3].filter('>1') -> [2,3]
+ * >> [1,2,3].filter('<1') -> []
+ * >> [1,2,3].filter('v,i -> i>1') -> [3]
+ * 
  * @param {Function} func
  * @param {Object} scope
  * @return {Array}
@@ -137,7 +158,12 @@ Array.prototype.filter = (function(){
  * Tests whether all elements in the array pass the test implemented
  * by the provided function.
  * 
- * <p>When array is empty, returns true.
+ * >> [1,2,3].every('>0') -> true
+ * >> [1,2,3].every('>1') -> false
+ * 
+ * When array is empty, returns true:
+ * 
+ * >> [].every(function(){}) -> true
  * 
  * @param {Function} func
  * @param {Object} scope
@@ -167,7 +193,14 @@ Array.prototype.every = (function(){
  * Tests whether some element in the array passes the test
  * implemented by the provided function.
  * 
- * <p>When array is empty, returns false.
+ * >> [1,2,3].some('>0') -> true
+ * >> [1,2,3].some('>1') -> true
+ * >> [1,2,3].some('>2') -> true
+ * >> [1,2,3].some('>3') -> false
+ * 
+ * When array is empty, returns false:
+ * 
+ * >> [].some(function(){}) -> false
  * 
  * @param {Function} fun
  * @param {Object} scope
