@@ -490,6 +490,9 @@ obfunctional.override(Array, {
   /**
    * Returns first element of array or undefined when array empty.
    * 
+   * >> [].first() -> undefined
+   * >> [5,6,3].first() -> 5
+   * 
    * @return {Anything}
    */
   first: function() {
@@ -498,6 +501,9 @@ obfunctional.override(Array, {
   
   /**
    * Returns last element of array or undefined when array empty.
+   * 
+   * >> [].last() -> undefined
+   * >> [5,6,3].last() -> 3
    * 
    * @return {Anything}
    */

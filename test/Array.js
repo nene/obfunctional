@@ -1,17 +1,5 @@
 module("Array");
 
-test("first()", function() {
-  same([].first(), undefined);
-  same([8].first(), 8);
-  same([4,5,2].first(), 4);
-});
-
-test("last()", function() {
-  same([].last(), undefined);
-  same([8].last(), 8);
-  same([4,5,2].last(), 2);
-});
-
 test("equals()", function() {
   ok([].equals([]), "Empty array are equal");
   ok([1,2,3].equals([1,2,3]), "1,2,3 equals 1,2,3");
