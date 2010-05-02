@@ -44,7 +44,7 @@
  *
  * Implicit parameter detection ignores strings literals, variable names that
  * start with capitals, and identifiers that precede `:` or follow `.`:
- * >> map('"im"+root', ["probable", "possible"]) -> ["improbable", "impossible"]
+ * >> ["probable", "possible"].map('"im"+root') -> ["improbable", "impossible"]
  * >> 'Math.cos(angle)'.lambda()(Math.PI) -> -1
  * >> 'point.x'.lambda()({x:1, y:2}) -> 1
  * >> '({x:1, y:2})[key]'.lambda()('x') -> 1
@@ -176,21 +176,6 @@ Function.prototype.toFunction = function() {
  * by calling its `toFunction` method.
  * >> Function.toFunction(function() {return 1})() -> 1
  * >> Function.toFunction('+1')(2) -> 3
- *
- * `Function.toFunction` requires an argument that can be
- * coerced to a function.  A nullary version can be
- * constructed via `guard`:
- * >> Function.toFunction.guard()('1+') -> function()
- * >> Function.toFunction.guard()(null) -> null
- *
- * `Function.toFunction` doesn't coerce arbitrary values to functions.
- * It might seem convenient to treat
- * `Function.toFunction(value)` as though it were the
- * constant function that returned `value`, but it's rarely
- * useful and it hides errors.  Use `Functional.K(value)` instead,
- * or a lambda string when the value is a compile-time literal:
- * >> Functional.K('a string')() -> "a string"
- * >> Function.toFunction('"a string"')() -> "a string"
  */
 Function.toFunction = function(value) {
     return value.toFunction();

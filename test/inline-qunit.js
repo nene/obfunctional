@@ -7,12 +7,13 @@ var InlineQUnit = (function() {
     var tests = loadTests(url);
     module(url);
     for (var i=0; i<tests.length; i++) {
-      var t = tests[i];
-      test(t[0]+" -> "+t[1], function() {
-        var a = new Function("return (" + t[0] + ");");
-        var b = new Function("return (" + t[1] + ");");
-        same(a(), b());
-      });
+      (function(t) {
+        test(t[0]+" -> "+t[1], function() {
+          var a = new Function("return (" + t[0] + ");");
+          var b = new Function("return (" + t[1] + ");");
+          same(a(), b());
+        });
+      })(tests[i]);
     }
   }
   
