@@ -9,12 +9,18 @@ var InlineQUnit = (function() {
     for (var i=0; i<tests.length; i++) {
       (function(t) {
         test(t[0]+" -> "+t[1], function() {
-          var a = new Function("return (" + t[0] + ");");
-          var b = new Function("return (" + t[1] + ");");
+          var a = makeFunc(t[0]);
+          var b = makeFunc(t[1]);
           same(a(), b());
         });
       })(tests[i]);
     }
+  }
+  
+  // creates function from JS source code.
+  // When code doesn't contain semicolons, converts it to return statement
+  function makeFunc(code) {
+    return new Function(/;/.test(code) ? code : "return (" + code + ");");
   }
   
   function loadTests(url) {

@@ -1,34 +1,5 @@
 module("Array");
 
-test("forEach() on empty array doesn't execute callback", function() {
-  var foo = true;
-  [].forEach(function(){foo=false;});
-  ok(foo);
-});
-
-test("forEach() passes every element in array to callback", function() {
-  var sum = [];
-  [1,2,3,4].forEach(function(x){sum.push(x);});
-  same(sum, [1,2,3,4]);
-});
-
-test("forEach() passes every index in array to callback", function() {
-  var sum = [];
-  [1,2,3,4].forEach(function(x, i){sum.push(i);});
-  same(sum, [0,1,2,3]);
-});
-
-test("forEach() gets function scope from second argument", function() {
-  var result = [];
-  var obj = {
-    value: 5,
-    addValue: function(x){result.push(x+this.value);}
-  };
-  
-  [1,2,3,4].forEach(obj.addValue, obj);
-  same(result, [6,7,8,9]);
-});
-
 test("map()", function() {
   same([].map(function(){}), [], "mapping empty list always returns empty list");
   same([1,2,3].map('*2'), [2,4,6], "doubling all alements");

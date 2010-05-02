@@ -8,6 +8,17 @@
  * <p>Implementation of JavaScript 1.6 built in method, as documented in:
  * https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/forEach
  * 
+ * forEach is good choice when the callback doesn't return anything
+ * and just produces a side-effect, like so:
+ * 
+ * >> var sum=0; [1,2,3].forEach(function(x){sum+=x}); return sum -> 6
+ * >> var sum=0; [1,2,3].forEach(function(x, i){sum+=i}); return sum -> 3
+ * >> var x=0; [3].forEach(function(){x=this.y}, {y: 5}); return x -> 5
+ * 
+ * forEach() on empty array doesn't execute the callback at all:
+ * 
+ * >> var x=1; [].forEach(function(){x=2}); return x -> 1
+ * 
  * @param {Function} func
  * @param {Object} scope
  * @return {Array}
