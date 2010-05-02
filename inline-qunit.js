@@ -4,16 +4,20 @@
  */
 var InlineQUnit = (function() {
   function run(url) {
-    var tests = loadTests(url);
+    var testsets = extractTestsets(getContents(url));
     module(url);
-    for (var i=0; i<tests.length; i++) {
-      (function(t) {
-        test(t[0]+" -> "+t[1], function() {
-          var a = makeFunc(t[0]);
-          var b = makeFunc(t[1]);
-          same(a(), b());
+    for (var i=0; i<testsets.length; i++) {
+      (function(name, tests) {
+        test(name, function() {
+          expect(tests.length);
+          for (var j=0; j<tests.length; j++) {
+            var t = tests[j];
+            var a = makeFunc(t[0]);
+            var b = makeFunc(t[1]);
+            same(a(), b());
+          }
         });
-      })(tests[i]);
+      })(testsets[i].name, testsets[i].tests);
     }
   }
   
@@ -23,9 +27,43 @@ var InlineQUnit = (function() {
     return new Function(/;/.test(code) ? code : "return (" + code + ");");
   }
   
-  function loadTests(url) {
-    var js = getContents(url);
-    var lines = js.split(/\r\n|\r|\n/);
+  // Extracts doc-comments from source code and for each doc-comment
+  // returns object containing the name of its associated function
+  // and the test expressions inside each doc-comment.
+  function extractTestsets(code) {
+    var m;
+    var testsets = [];
+    while (code.length > 0) {
+      if ((m = code.match(/^(\/\*\*[^]*?\*\/)([^]*)$/))) {
+        var tests = extractTests(m[1]);
+        // ignore when docblock contains no tests
+        if (tests.length > 0) {
+          testsets.push({
+            name: extractFuncName(m[2]),
+            tests: tests
+          });
+        }
+        code = m[2];
+      }
+      else if ((m = code.match(/^([^]*?)(\/\*\*[^]*)$/))) {
+        code = m[2];
+      }
+      else {
+        code = "";
+      }
+    }
+    return testsets;
+  }
+  
+  // returns the name of the function at the beginning of the code
+  function extractFuncName(code) {
+    var m = code.match(/^\s*(?:var\s+)?(?:[a-z0-9_]+\.)*([a-z0-9_]+)\s*[=:]/i);
+    return m ? m[1] : "Unable to determine function name!";
+  }
+  
+  // extracts tests inside doc-comment
+  function extractTests(code) {
+    var lines = code.split(/\r\n|\r|\n/);
     
     var tests = [];
     for (var i=0; i < lines.length; i++) {
