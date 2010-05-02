@@ -50,7 +50,12 @@ var InlineQUnit = (function() {
     xhr.open("GET", url, false);
     xhr.send(null);
     
-    return (xhr.status === 200) ? xhr.responseText : "";
+    if (xhr.status !== 200) {
+      alert("InlineQUnit: Failed to load: "+url);
+      return "";
+    }
+    
+    return xhr.responseText;
   }
   
   return {
