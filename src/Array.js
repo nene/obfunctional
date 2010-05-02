@@ -645,9 +645,11 @@ obfunctional.override(Array, {
    * <p>For example to sort array of strings my length you would
    * supply a sort function, that returns length of string:
    * 
-   * <pre>
-   * ["a", "", "foo", "xy"].sortByValue(".length"); // --> ["", "a", "xy", "foo"]
-   * </pre>
+   * >> ["a", "", "foo", "xy"].sortByValue(".length") -> ["", "a", "xy", "foo"]
+   * 
+   * Scope can also be used:
+   * 
+   * >> ["a","b","c"].sortByValue("x->this[x]", {b:1, c:2, a:3}) -> ["b","c","a"]
    * 
    * @param {Function} extractValue  callback that gets called with
    * each array element.
