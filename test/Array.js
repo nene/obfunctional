@@ -1,38 +1,5 @@
 module("Array");
 
-test("contains() finds nothing from empty list", function() {
-  same([].contains(5), false);
-});
-
-test("contains() works with numbers", function() {
-  same([42].contains(42), true);
-  same([1,2,3].contains(2), true);
-  same([1,2,3].contains(0), false);
-});
-
-test("contains() works with all kinds of types", function() {
-  var obj = {a:1};
-  var arr = [1,2,3];
-  var fun = function(){};
-  
-  var stuff = ["x", 8, false, undefined, null, obj, arr, fun];
-  stuff.forEach(function(item) {
-    ok(stuff.contains(item));
-  });
-  
-  var otherStuff = ["X", 5, true, {a:1}, [1,2,3], function(){}];
-  otherStuff.forEach(function(item) {
-    ok(!stuff.contains(item));
-  });
-  stuff.forEach(function(item) {
-    ok(!otherStuff.contains(item));
-  });
-});
-
-test("contains() compares using ===", function() {
-  same([1,2,3].contains("3"), false);
-});
-
 test("compact() removes nothing when no element null or undefined", function() {
   var arr = [42,true,false,{x:8},[1,2]];
   same(arr.compact(), arr);

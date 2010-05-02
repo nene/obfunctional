@@ -437,8 +437,11 @@ obfunctional.override(Array, {
   /**
    * Returns true when value exists in array, false otherwise.
    * 
-   * <p>Works like indexOf(), but more suitable when you don't
+   * Works like indexOf(), but more suitable when you don't
    * care about the index of the element you are looking for.
+   * 
+   * >> [1,2,3].contains(2) -> true
+   * >> [1,2,3].contains(5) -> false
    * 
    * @param {Anything} value
    * @return {Boolean}
