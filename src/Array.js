@@ -514,15 +514,17 @@ obfunctional.override(Array, {
   /**
    * Returns true when the passed in array is equal to this one.
    * 
-   * <p>For example:
+   * >> [].equals([]) -> true
+   * >> [1,2,3].equals("foo") -> false
+   * >> [1,2,3].equals([1,2,3]) -> true
+   * >> [1,2,3].equals([3,2,1]) -> false
+   * >> [1,2,3].equals([1,2,"3"]) -> false
+   * >> [[1,2],[3,4]].equals([[1,2],[3,4]]) -> true
    * 
-   * <pre>
-   * [1,2,3].equals("foo"); // false
-   * [1,2,3].equals([1,2,3]); // true
-   * [1,2,3].equals([3,2,1]); // false
-   * [1,2,3].equals([1,2,"3"]); // false
-   * [[1,2],[3,4]].equals([[1,2],[3,4]]); // true
-   * </pre>
+   * Note that the length check is needed for cases like these:
+   * 
+   * >> [1,2,3].equals([1,2,3,4]) -> false
+   * >> [1,2,3,4].equals([1,2,3]) -> false
    * 
    * @param {Array} arr  the array to compare to
    * @return {Boolaen}
