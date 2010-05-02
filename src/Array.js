@@ -669,15 +669,12 @@ obfunctional.override(Array, {
    * Chunks an array into size large chunks. The last chunk may
    * contain less than size elements.
    * 
-   * <p>For example:
+   * >> [1,2,3,4].chunk(2) -> [[1,2], [3,4]]
+   * >> [1,2,3,4].chunk(3) -> [[1,2,3], [4]]
+   * >> [1,2,3,4,5].chunk(1) -> [[1], [2], [3], [4], [5]]
+   * >> [].chunk(2) -> []
    * 
-   * <pre>
-   * [1,2,3,4].chuck(2); // --> [[1,2], [3,4]]
-   * [1,2,3,4].chuck(3); // --> [[1,2,3], [4]]
-   * [1,2,3,4,5].chuck(1); // --> [[1], [2], [3], [4], [5]]
-   * </pre>
-   * 
-   * @param {Number} size  the size of each chunk
+   * @param {Number} size  the size of each chunk (must be > 0)
    * @return {Array}
    */
   chunk: function(size) {
