@@ -48,39 +48,6 @@ test("pluck()", function() {
   same([{foo:1}, {bar:2}].pluck("baz"), [undefined, undefined]);
 });
 
-test("indexOf() returns array index or -1", function() {
-  same([1,2,3,4].indexOf(3), 2);
-  same([5,5,8,2,3,2].indexOf(2), 3);
-  same([8,9,2].indexOf(5), -1);
-  same([].indexOf(4), -1);
-});
-
-test("lastIndexOf() returns array index or -1", function() {
-  same([1,2,3,4].lastIndexOf(3), 2);
-  same([5,5,8,2,3,2].lastIndexOf(2), 5);
-  same([8,9,2].lastIndexOf(5), -1);
-  same([].lastIndexOf(4), -1);
-});
-
-test("indexOf() and lastIndexOf() compare using ===", function() {
-  same([1,2,3,4].indexOf("3"), -1);
-  same([1,2,3,4].lastIndexOf("3"), -1);
-  same([null].indexOf(undefined), -1);
-  same([undefined].lastIndexOf(null), -1);
-});
-
-test("indexOf() and lastIndexOf() fromIndex parameter", function() {
-  same([1,2,3,4,5].indexOf(3, 0), 2);
-  same([1,2,3,4,5].indexOf(3, 2), 2);
-  same([1,2,3,4,5].indexOf(3, 3), -1);
-  same([1,2,3,4,5].indexOf(3, 4), -1);
-  
-  same([1,2,3,4,5].lastIndexOf(3, 4), 2);
-  same([1,2,3,4,5].lastIndexOf(3, 2), 2);
-  same([1,2,3,4,5].lastIndexOf(3, 1), -1);
-  same([1,2,3,4,5].lastIndexOf(3, 0), -1);
-});
-
 test("contains() finds nothing from empty list", function() {
   same([].contains(5), false);
 });

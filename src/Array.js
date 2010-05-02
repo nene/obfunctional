@@ -231,8 +231,22 @@ if (!Array.prototype.indexOf) {
    * Returns the first index at which a given element can be found in
    * the array, or -1 if it is not present.
    * 
-   * <p>indexOf compares searchElement to elements of the Array using
+   * indexOf compares searchElement to elements of the Array using
    * strict equality (the same method used by the === operator).
+   * 
+   * >> [1,2,3,4].indexOf(3) -> 2
+   * >> [5,5,8,2,3,2].indexOf(2) -> 3
+   * >> [8,9,2].indexOf(5) -> -1
+   * >> [].indexOf(4) -> -1
+   * 
+   * Comparison is performed using ===:
+   * 
+   * >> [1,2,3,4].indexOf("3") -> -1
+   * 
+   * Use of the fromIndex parameter:
+   * 
+   * >> [1,2,3,4,5].indexOf(3, 2) -> 2
+   * >> [1,2,3,4,5].indexOf(3, 3) -> -1
    * 
    * @param {Object} searchElement Element to locate in the array.
    * @param {Number} fromIndex The index at which to begin the search.
@@ -387,8 +401,19 @@ obfunctional.override(Array, {
    * the array, or -1 if it is not present. The array is searched
    * backwards, starting at fromIndex.
    * 
-   * <p>lastIndexOf compares searchElement to elements of the Array using
-   * strict equality (the same method used by the === operator).
+   * >> [1,2,3,4].lastIndexOf(3) -> 2
+   * >> [5,5,8,2,3,2].lastIndexOf(2) -> 5
+   * >> [8,9,2].lastIndexOf(5) -> -1
+   * >> [].lastIndexOf(4) -> -1
+   * 
+   * Comparison is done with the === operator:
+   * 
+   * >> [1,2,3,4].lastIndexOf("3") -> -1
+   * 
+   * Use of the fromIndex parameter:
+   * 
+   * >> [1,2,3,4,5].lastIndexOf(3, 2) -> 2
+   * >> [1,2,3,4,5].lastIndexOf(3, 1) -> -1
    * 
    * @param {Object} searchElement Element to locate in the array.
    * @param {Number} fromIndex The index at which to start searching
