@@ -268,13 +268,15 @@ obfunctional.override(Array, {
   /**
    * Invokes a method on each item in an Array.
    * 
-   * <p>Invoke is just a special form of map:
+   * Invoke is just a special form of map:
    * 
-   * <pre><code>
-   * buttons.invoke("setValue", "foo");
-   * // is equivalent of:
-   * buttons.map(function(b) { return b.setValue("foo"); });
-   * </code></pre>
+   * >> [{foo:"1".lambda()}, {foo:"2".lambda()}].invoke("foo") -> [1,2]
+   * >> [{foo:"1".lambda()}, {foo:"2".lambda()}].map(".foo()") -> [1,2]
+   * 
+   * Also with parameters:
+   * 
+   * >> [{foo:"x+1".lambda()}, {foo:"x+2".lambda()}].invoke("foo", 5) -> [6,7]
+   * >> [{foo:"x+1".lambda()}, {foo:"x+2".lambda()}].map(".foo(5)") -> [6,7]
    * 
    * @param {String} methodName The method name to invoke.
    * @param {Anything} ... Arguments to send into the method invocation.

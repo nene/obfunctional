@@ -1,15 +1,5 @@
 module("Array");
 
-test("invoke()", function() {
-  same([].invoke("foo"), [], "invoke on empty list results in empty list");
-  
-  same([
-    {foo: function(){return "a";}},
-    {foo: function(){return "b";}},
-    {foo: function(){return "c";}}
-  ].invoke("foo"), ["a", "b", "c"]);
-});
-
 test("max()", function() {
   same([].max(), null, "maximum value in empty list is null");
   same([9].max(), 9, "maximum value of one-element list is the only value in there");
